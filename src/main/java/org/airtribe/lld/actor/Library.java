@@ -1,9 +1,11 @@
 package org.airtribe.lld.actor;
 
+import org.airtribe.lld.Main;
 import org.airtribe.lld.notification.NotificationManager;
 import org.airtribe.lld.recommendation.RecommendationStrategy;
 
 import java.util.*;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 public class Library {
@@ -15,6 +17,9 @@ public class Library {
     /*private ReservationSystem reservationSystem;*/
     public NotificationManager manager;
     private Map<Book, Set<Patron>> reservations;
+
+    private static final Logger logger = Logger.getLogger(Library.class.getName());
+
 
     public Library(String branchCode, String address) {
         this.branchCode = branchCode;
@@ -70,6 +75,8 @@ public class Library {
             patron.returnBook(book);
             book.setAvailable(true);
             //reservationSystem.manager.notify(book);
+            System.out.println("Book "+book.getIsbn()+" returned by "+patron.getName()+" pId : "+patron.getPatronId());
+
             manager.notify(book);
             return true;
         }
@@ -81,6 +88,7 @@ public class Library {
         if (Objects.nonNull(books.get(book.getIsbn()))) {
             books.remove(book.getIsbn());
             targetLib.addBook(book);
+            System.out.println("Book "+book.getIsbn()+" transferred from library brandId : "+this.getBranchCode()+" to branchId : "+targetLib.getBranchCode());
         }
     }
 
@@ -96,6 +104,7 @@ public class Library {
     }
 
     public Map<String, Book> getBooks() {
+        System.out.println("Books in Library "+ this.getBranchCode());
         books.forEach((key, value) -> {
             System.out.println("Book :"+value.getIsbn()+" | "+value.getTitle()+" | "+value.isAvailable());
         });
@@ -107,7 +116,7 @@ public class Library {
     }
 
     public Map<String, Patron> getPatrons() {
-        StringBuilder b = new StringBuilder();
+        System.out.println("Patrons in Library "+ this.getBranchCode());
         patrons.forEach((key, value) -> {
             System.out.println("Patron : "+value.getPatronId()+" | "+value.getName()+" | Books : "+value.getBorrowedBooks().stream().map(e -> e.getIsbn()+"; ").reduce("", String::concat));
         });
@@ -141,6 +150,7 @@ public class Library {
         bookQueue.add(patron);
         reservations.put(book,bookQueue);
         // Subscribing to Notification Listener
+        System.out.println("Book "+book.getIsbn()+" reserved by "+patron.getName()+" pId : "+patron.getPatronId());
         manager.subscribe(book, patron);
     }
 

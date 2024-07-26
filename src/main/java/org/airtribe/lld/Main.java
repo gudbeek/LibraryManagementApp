@@ -6,7 +6,12 @@ import org.airtribe.lld.actor.Patron;
 import org.airtribe.lld.recommendation.AuthorStrategy;
 import org.airtribe.lld.recommendation.GenreStrategy;
 
+import java.util.logging.Logger;
+
 public class Main {
+
+    private static final Logger logger = Logger.getLogger(Main.class.getName());
+
     public static void main(String[] args) {
 
         // Create Books
@@ -31,6 +36,7 @@ public class Main {
         lb1.addBook(b3);
         lb1.addBook(b4);
         lb1.addBook(b5);
+
 
         lb1.getBooks();
 
