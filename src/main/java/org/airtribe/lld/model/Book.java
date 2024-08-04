@@ -1,4 +1,4 @@
-package org.airtribe.lld.actor;
+package org.airtribe.lld.model;
 
 public class Book {
     private String title;

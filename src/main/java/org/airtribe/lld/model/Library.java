@@ -1,6 +1,5 @@
-package org.airtribe.lld.actor;
+package org.airtribe.lld.model;
 
-import org.airtribe.lld.Main;
 import org.airtribe.lld.notification.NotificationManager;
 import org.airtribe.lld.recommendation.RecommendationStrategy;
 

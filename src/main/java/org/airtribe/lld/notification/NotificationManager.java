@@ -1,6 +1,6 @@
 package org.airtribe.lld.notification;
 
-import org.airtribe.lld.actor.Book;
+import org.airtribe.lld.model.Book;
 
 import java.util.*;
 

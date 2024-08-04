@@ -1,8 +1,8 @@
 package org.airtribe.lld;
 
-import org.airtribe.lld.actor.Book;
-import org.airtribe.lld.actor.Library;
-import org.airtribe.lld.actor.Patron;
+import org.airtribe.lld.model.Book;
+import org.airtribe.lld.model.Library;
+import org.airtribe.lld.model.Patron;
 import org.airtribe.lld.recommendation.AuthorStrategy;
 import org.airtribe.lld.recommendation.GenreStrategy;
 
